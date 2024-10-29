@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Home</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        .profile-card {
+            margin-top: 50px;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .profile-img {
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .profile-info {
+            font-size: 18px;
+        }
+        .profile-info td {
+            padding: 10px;
+        }
+        .btn-custom {
+            margin-top: 20px;
+            width: 100px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="profile-card text-center">
+                    <h1 class="mb-4">Welcome, <%= user.name %></h1>
+
+                    <!-- Profile Image -->
+                    <img src="userImages/<%= user.image %>" class="profile-img" width="150px" height="150px" alt="<%= user.name %>'s Profile Image">
+
+                    <!-- User Info Table -->
+                    <table class="table profile-info">
+                        <tr>
+                            <td><strong>Email</strong></td>
+                            <td><%= user.email %></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mobile</strong></td>
+                            <td><%= user.mobile %></td>
+                        </tr>
+                    </table>
+
+                    <!-- Edit and Logout Buttons -->
+                    <div class="buttons">
+                        <a href="/edit?id=<%= user._id %>" class="btn btn-primary btn-custom">Edit</a>
+                        <a href="/logout" class="btn btn-danger btn-custom">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .dashboard-container {
+            margin-top: 30px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #007bff;
+            text-align: center;
+        }
+        .table {
+            margin-top: 20px;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+            text-align: center;
+        }
+        .btn-custom {
+            margin-right: 10px;
+        }
+        .not-found {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #dc3545;
+        }
+        .alert {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="dashboard-container">
+
+                    <!-- Success Message -->
+                    <% if (typeof message !== 'undefined' && message !== '') { %>
+                        <div class="alert alert-success">
+                            <%= message %>
+                        </div>
+                    <% } %>
+
+                    <h1>Dashboard</h1>
+
+                    <!-- Add New User Button -->
+                    <div class="text-right mb-3">
+                        <a href="/admin/new-user" class="btn btn-success">Add New User</a>
+                    </div>
+
+                    <!-- User Table -->
+                    <table class="table table-hover table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>Image</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (users.length > 0) { %>
+                                <% for (let i = 0; i < users.length; i++) { %>
+                                    <tr>
+                                        <td><%= users[i].name %></td>
+                                        <td><%= users[i].email %></td>
+                                        <td><%= users[i].mobile %></td>
+                                        <td><img src="/userImages/<%= users[i].image %>" alt="<%= users[i].image %>" width="80px" height="80px" class="img-thumbnail"></td>
+                                        <td>
+                                            <a href="/admin/edit-user?id=<%= users[i]._id %>" class="btn btn-primary btn-sm btn-custom">Edit</a>
+                                            <a href="/admin/delete-user?id=<%= users[i]._id %>" class="btn btn-danger btn-sm">Delete</a>
+                                        </td>
+                                    </tr>
+                                <% } %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="5" class="not-found">No Users Found</td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+
+                    <!-- Back to Home Button -->
+                    <div class="text-center mt-4">
+                        <a href="/admin/home" class="btn btn-info">Go to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js
